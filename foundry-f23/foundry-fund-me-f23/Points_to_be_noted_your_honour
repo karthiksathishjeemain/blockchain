@@ -1,0 +1,3 @@
+Gas price is 0 if the the contract runs on ANVIL chain;
+immutable and constant variables are part of contracts bytecode;
+Reading and writing from "Storage" is expensive
