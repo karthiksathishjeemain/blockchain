@@ -1,3 +1,6 @@
 Gas price is 0 if the the contract runs on ANVIL chain;
 immutable and constant variables are part of contracts bytecode;
 Reading and writing from "Storage" is expensive
+In a contract, all the solidity functions are coverted into function selector
+Use error statements instead of just using require statement to meet a particular condition
+Also make sure that the error should be named with the name of of contract , in order to know which contract has reverted thef error
