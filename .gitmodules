@@ -7,3 +7,12 @@
 [submodule "foundry-f23/foundry-fund-me-f23/lib/foundry-devops"]
 	path = foundry-f23/foundry-fund-me-f23/lib/foundry-devops
 	url = https://github.com/Cyfrin/foundry-devops
+[submodule "foundry-f23/foundry-smart-contract-lottery-f23/lib/forge-std"]
+	path = foundry-f23/foundry-smart-contract-lottery-f23/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "foundry-ERC-20-token-f23/lib/forge-std"]
+	path = foundry-ERC-20-token-f23/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "foundry-ERC-20-token-f23/lib/openzeppelin-contracts"]
+	path = foundry-ERC-20-token-f23/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
