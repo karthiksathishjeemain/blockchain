@@ -20,7 +20,7 @@ contract FundFundMe is Script {
 contract WithdrawFundMe is Script {
      function withdrawFundMe(address most_recently_deployed)  public  {
         vm.startBroadcast();
-        FundMe(payable(most_recently_deployed)).withdraw();
+        FundMe(payable(most_recently_deployed)).cheaperwithdraw();
         vm.stopBroadcast(); 
         console.log("Funde FundMe with 0.01 ether"  );  
     }

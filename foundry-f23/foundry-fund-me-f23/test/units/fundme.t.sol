@@ -59,7 +59,7 @@ contract Fundme_test is Test {
         vm.prank(USER);
          vm.expectRevert();
         // console.log(address(msg.sender));
-        fundme.withdraw();
+        fundme.cheaperwithdraw();
     }
 
     function test_Withdraw_with_single_funder() public funded {
@@ -67,7 +67,7 @@ contract Fundme_test is Test {
         uint256 startingFundMeBalance = address(fundme).balance;
 
         vm.prank(fundme.getowner());
-        fundme.withdraw();
+        fundme.cheaperwithdraw();
 
         uint256 EndingOwnerBalance = fundme.getowner().balance;
         uint256 EndingFundMeBalance = address(fundme).balance;
@@ -108,7 +108,7 @@ contract Fundme_test is Test {
         uint256 startingFundMeBalance = address(fundme).balance;
 
         vm.prank(fundme.getowner());
-        fundme.withdraw();
+        fundme.cheaperwithdraw();
 
         assertEq(address(fundme).balance, 0);
         assertEq(startingOwnerBalance + startingFundMeBalance, fundme.getowner().balance);

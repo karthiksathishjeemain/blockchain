@@ -19,12 +19,12 @@ contract FundMe {
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
 
     constructor(address priceFeed) {
-        s_pricefeed = AggregatorV3Interface(priceFeed);
+        s_pricefeed = AggregatorV3Interface ( priceFeed);
         i_owner = msg.sender;
     }
 
     function fund() public payable {
-        require(msg.value.getConversionRate(s_pricefeed) >= MINIMUM_USD, "You need to spend more ETH!");
+        require(PriceConverter.getConversionRate(msg.value,s_pricefeed) >= MINIMUM_USD, "You need to spend more ETH!");
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         addressToAmountFunded[msg.sender] += msg.value;
         s_funders.push(msg.sender);
@@ -53,23 +53,23 @@ contract FundMe {
         require(callSuccess, "Call failed");
     }
 
-    function withdraw() public onlyOwner {
-        for (uint256 funderIndex = 0; funderIndex < s_funders.length; funderIndex++) {
-            address funder = s_funders[funderIndex];//here we are reading from the storage each time we run the loop
-            addressToAmountFunded[funder] = 0;
-        }
-        s_funders = new address[](0);
-        // // transfer
-        // payable(msg.sender).transfer(address(this).balance);
+    // function withdraw() public onlyOwner {
+    //     for (uint256 funderIndex = 0; funderIndex < s_funders.length; funderIndex++) {
+    //         address funder = s_funders[funderIndex];//here we are reading from the storage each time we run the loop
+    //         addressToAmountFunded[funder] = 0;
+    //     }
+    //     s_funders = new address[](0);
+    //     // // transfer
+    //     // payable(msg.sender).transfer(address(this).balance);
 
-        // // send
-        // bool sendSuccess = payable(msg.sender).send(address(this).balance);
-        // require(sendSuccess, "Send failed");
+    //     // // send
+    //     // bool sendSuccess = payable(msg.sender).send(address(this).balance);
+    //     // require(sendSuccess, "Send failed");
 
-        // call
-        (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
-        require(callSuccess, "Call failed");
-    }
+    //     // call
+    //     (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
+    //     require(callSuccess, "Call failed");
+    // }
 
     fallback() external payable {
         fund();
